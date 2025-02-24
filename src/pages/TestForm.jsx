@@ -15,10 +15,13 @@ const TestForm = ({ onSubmit }) => {
     setAnswers(newAnswers);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(answers);
-    navigate("/result");
+
+    // 서버와 state에 결과 데이터를 저장
+    const resultData = await onSubmit(answers);
+    // 결과 페이지로 이동
+    navigate("/result", { state: { latestResult: resultData } });
   };
 
   return (

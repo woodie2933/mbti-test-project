@@ -7,6 +7,7 @@ import {
 
 const TestResult = () => {
   const [result, setResult] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +21,7 @@ const TestResult = () => {
     };
 
     fetchData();
-  }, []);
+  }, [refresh]);
 
   // 결과 삭제 기능
   const handleDelete = async (id) => {
