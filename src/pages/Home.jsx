@@ -7,14 +7,17 @@ const Home = ({ isAuthenticated, setIsAuthenticated }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#ffd79b] text-white">
-      <div className="flex flex-col items-center justify-center bg-[#ffffff] w-[600px] h-80 p-10 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 mb-12">
-          무료 성격 테스트
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#ffffff] text-white">
+      <div className="flex flex-col items-center justify-center bg-[#e9e9e9] w-[500px] h-72 p-10 rounded-lg shadow-lg">
+        <h1 className="english-text text-4xl font-bold text-center text-[#343434] mb-8">
+          MBTI TEST
         </h1>
+        <p className="text-l text-center text-[#343434] mb-8">
+          아직도 MBTI 테스트를 안 해본거야..?
+        </p>
         <Link
           to="/login"
-          className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold text-lg shadow-md hover:bg-gray-200 transition duration-300"
+          className="bg-white text-[#ff4848] hover:text-[#ffffff] px-6 py-3 rounded-lg font-semibold text-lg shadow-md hover:bg-[#454545] transition duration-300"
         >
           {!!isAuthenticated ? (
             <div onClick={onClickHandler}>로그아웃</div>
