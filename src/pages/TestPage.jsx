@@ -16,7 +16,7 @@ const TestPage = ({ user }) => {
     const testResultData = {
       mbti: mbtiResult,
       description: mbtiDescriptions[mbtiResult],
-      userId: user?.id, // user 정보가 있을 경우 포함 (필요 시)
+      userId: user?.id,
     };
 
     try {
@@ -24,13 +24,10 @@ const TestPage = ({ user }) => {
       const savedResult = await createTestResult(testResultData);
       // 저장된 결과를 setState
       setResult(savedResult);
+      navigate("/result");
     } catch (error) {
       console.log("페이지 오류:", error);
     }
-  };
-
-  const handleNavigateToResults = () => {
-    navigate("/result");
   };
 
   return (
@@ -38,14 +35,14 @@ const TestPage = ({ user }) => {
       <div className="bg-white rounded-lg p-8 max-w-lg w-full h-full overflow-y-auto">
         {!result ? (
           <>
-            <h1 className="text-3xl font-bold text-primary-color mb-6">
+            <h1 className="flex flex-col items-center justify-center text-3xl font-bold text-[#343434] mb-6">
               MBTI 테스트
             </h1>
             <TestForm onSubmit={handleTestSubmit} />
           </>
         ) : (
           <>
-            <h1 className="text-3xl font-bold text-primary-color mb-6">
+            <h1 className="text-3xl font-bold text-[#343434] mb-6">
               테스트 결과: {result}
             </h1>
             <p className="text-lg text-gray-700 mb-6">
@@ -54,7 +51,7 @@ const TestPage = ({ user }) => {
             </p>
             <button
               onClick={handleNavigateToResults}
-              className="w-full bg-primary-color text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
+              className="w-full bg-[#343434] text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
             >
               결과 페이지로 이동하기
             </button>

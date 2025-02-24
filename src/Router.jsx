@@ -16,30 +16,32 @@ const AppRouter = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route
-            path="/"
-            element={
-              <Home
-                isAuthenticated={isAuthenticated}
-                setIsAuthenticated={setIsAuthenticated}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={<Login setIsAuthenticated={setIsAuthenticated} />}
-          />
-          <Route path="/signup" element={<Signup />} />
-        </Route>
+      <Layout>
+        <Routes>
+          <Route>
+            <Route
+              path="/"
+              element={
+                <Home
+                  isAuthenticated={isAuthenticated}
+                  setIsAuthenticated={setIsAuthenticated}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={<Login setIsAuthenticated={setIsAuthenticated} />}
+            />
+            <Route path="/signup" element={<Signup />} />
+          </Route>
 
-        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/test" element={<TestPage />} />
-          <Route path="/result" element={<TestResultPage />} />
-        </Route>
-      </Routes>
+          <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/test" element={<TestPage />} />
+            <Route path="/result" element={<TestResultPage />} />
+          </Route>
+        </Routes>
+      </Layout>
     </Router>
   );
 };
