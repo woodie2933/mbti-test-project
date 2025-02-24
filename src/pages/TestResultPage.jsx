@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getTestResults } from "../api/testResults";
+import {
+  getTestResults,
+  deleteTestResult,
+  updateTestResultVisibility,
+} from "../api/testResults";
 
 const TestResult = () => {
   const [result, setResult] = useState([]);
@@ -17,6 +21,33 @@ const TestResult = () => {
 
     fetchData();
   }, []);
+
+  // 결과 삭제 기능
+  const handleDelete = async (id) => {
+    try {
+      await deleteTestResult(id);
+      setResult((prevResult) =>
+        prevResult.filter((result) => result.id !== id)
+      );
+    } catch (error) {
+      console.log("삭제할 수 없습니다", error);
+    }
+  };
+
+  // 결과 비공개
+  const handleVisibilityToggle = async (id, currentVisibility) => {
+    try {
+      const newVisibility = !currentVisibility;
+      await updateTestResultVisibility(id, newVisibility);
+      setResult((prevResult) =>
+        prevResult.map((result) =>
+          result.id === id ? { ...result, visibility: newVisibility } : result
+        )
+      );
+    } catch (error) {
+      console.log("비공개할 수 없습니다.", error);
+    }
+  };
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center bg-gray-100 p-10">
@@ -36,6 +67,27 @@ const TestResult = () => {
               <p className="text-gray-700 text-sm leading-relaxed">
                 {e.description}
               </p>
+
+              <div className="mt-4 flex space-x-4">
+                {/* 삭제 버튼 */}
+                <button
+                  onClick={() => handleDelete(e.id)}
+                  className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-[#454545] transition duration-300"
+                >
+                  삭제
+                </button>
+                {/* 비공개 버튼 */}
+                <button
+                  onClick={() => handleVisibilityToggle(e.id, e.visibility)}
+                  className={`px-3 py-1 rounded-lg hover:bg-[#454545] transition duration-300 ${
+                    e.visibility
+                      ? "bg-gray-500 text-white hover:bg-[#454545] transition duration-300"
+                      : "bg-[#48b6ff] text-white hover:bg-[#454545] transition duration-300"
+                  }`}
+                >
+                  {e.visibility ? "비공개" : "공개"}
+                </button>
+              </div>
             </div>
           ))
         ) : (
