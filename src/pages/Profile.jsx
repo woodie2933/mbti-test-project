@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 const Profile = ({ user, setUser }) => {
   const [nickname, setNickname] = useState(user?.nickname || "");
   const data = JSON.parse(localStorage.getItem("userData"));
-  console.log("8번째 줄", nickname);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,18 +49,18 @@ const Profile = ({ user, setUser }) => {
           onSubmit={handleSubmit}
           className="w-96 h-40 bg-white text-[#343434] p-6 rounded-xl flex flex-col justify-center items-center"
         >
-          <div className="w-full">
+          <div className="w-full flex justify-center">
             <input
               type="text"
               value={nickname}
               onChange={handleNicknameChange}
               defaultValue={nickname}
-              className="w-full p-2 border-none rounded-md text-[#343434] focus:outline-none focus:ring-2 focus:ring-[#f56d6d]"
+              className="w-64 p-2 border-none rounded-md text-[#343434] text-xl font-semibold focus:outline-none focus:ring-2 focus:ring-[#f56d6d] text-center"
             />
           </div>
           <button
             type="submit"
-            className="mt-6 px-6 py-3 bg-[#f56d6d] text-white font-bold rounded-full shadow-md hover:bg-[#454545] transition duration-300"
+            className="mt-4 px-6 py-3 bg-[#f56d6d] text-white font-bold rounded-full shadow-md hover:bg-[#454545] transition duration-300"
           >
             프로필 업데이트
           </button>

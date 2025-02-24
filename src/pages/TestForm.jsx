@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { questions } from "../data/question";
+import { useNavigate } from "react-router-dom";
 
 const TestForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState(
     Array(questions.length).fill({ type: "", answer: "" })
   );
+
+  const navigate = useNavigate();
 
   const handleChange = (index, answer) => {
     const newAnswers = [...answers];
@@ -15,10 +18,14 @@ const TestForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(answers);
+    navigate("/result");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-white rounded-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6 p-6 bg-white rounded-lg text-[#292929]"
+    >
       {questions.map((q, index) => (
         <div key={q.id} className="mb-6">
           <p className="font-semibold text-lg mb-3">{q.question}</p>
@@ -44,12 +51,14 @@ const TestForm = ({ onSubmit }) => {
           </div>
         </div>
       ))}
-      <button
-        type="submit"
-        className="w-full bg-primary-color text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
-      >
-        제출하기
-      </button>
+      <div className="flex flex-col justify-center items-center">
+        <button
+          type="submit"
+          className="mt-4 px-6 py-3 bg-[#f56d6d] text-white font-bold rounded-full shadow-md hover:bg-[#454545] transition duration-300]"
+        >
+          제출하기
+        </button>
+      </div>
     </form>
   );
 };
