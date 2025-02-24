@@ -60,7 +60,7 @@ const TestResult = () => {
           result.map((e) => (
             <div
               key={e.id}
-              className="bg-white shadow-lg rounded-lg p-6 w-[600px] flex flex-col items-center text-center"
+              className="bg-white shadow-lg rounded-lg p-6 w-[550px] flex flex-col items-center text-center"
             >
               <h2 className="text-2xl font-bold text-[#f56d6d] mb-4">
                 {e.mbti}
