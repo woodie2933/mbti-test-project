@@ -72,17 +72,17 @@ https://pokemon-project-five-beta.vercel.app/
 
 ### :heavy_check_mark:
 
-> - **Pokemon List**을 활용하여 사용자가 원하는 포켓몬을 고를 수 있습니다.
+> - **HOME** </br> MBTI 테스트를 위한 홈 화면입니다.
 >
-> - **ADD**버튼을 활용하여 대시보드에 고른 카드를 저장할 수 있습니다.
+> - **LOGIN** </br> 로그인 페이지입니다.
 >
-> - **Pokemon List**의 각 카드를 클릭하면 해당 포켓몬에 대한 정보를 볼 수 있습니다.
+> - **SIGNUP** </br> 회원가입 페이지입니다.
 >
-> - **Dashboard Section**에서 사용자가 저장한 카드 목록을 볼 수 있습니다.
+> - **PROFILE** </br> 로그인한 user 정보를 볼 수 있고, nickname 을 수정할 수 있습니다.
 >
-> - **DELETE**버튼으로 대시보드에서 카드를 삭제할 수 있습니다.
+> - **TESTPAGE** </br> MBTI 를 테스트할 수 있는 페이지입니다.
 >
-> - **Styled-Components**를 활용해 심플한 UI를 구성했습니다.
+> - **TESTRESULTPAGE** </br> 테스트 결과를 모아볼 수 있는 페이지입니다.
 
 <br/>
 
