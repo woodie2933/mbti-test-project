@@ -8,18 +8,25 @@ const Login = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const handleLogin = async ({ id, password }) => {
-    console.log(id, password);
     try {
       // JSON 데이터 전송
       const userData = await login({ id, password });
+      console.log("로그인 성공:", userData);
+
+      if (!userData) {
+        throw new Error("로그인 실패");
+      }
+
       setIsAuthenticated(JSON.stringify(userData));
       console.log(userData);
+
       localStorage.setItem("userData", JSON.stringify(userData));
 
-      console.log("성공!");
+      alert("성공!");
       navigate("/"); // 로그인 성공 => 홈으로 이동
     } catch (error) {
-      alert("로그인에 실패했습니다. 다시 시도해주세요.");
+      console.log("로그인 실패", error);
+      alert("로그인 실패. 다시 시도해주세요.");
     }
   };
 

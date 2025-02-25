@@ -12,7 +12,6 @@ import Layout from "./components/Layout";
 
 const AppRouter = () => {
   const [isAuthenticated, setIsAuthenticated] = useState({});
-  console.log("Router:", isAuthenticated);
 
   return (
     <Router>

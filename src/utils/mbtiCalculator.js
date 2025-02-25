@@ -61,13 +61,13 @@ export const calculateMBTI = (answers) => {
 };
 
 // 사용 예시:
-const answers = [
-  { type: "E/I", answer: "I" },
-  { type: "S/N", answer: "N" },
-  { type: "T/F", answer: "T" },
-  { type: "J/P", answer: "J" },
-  // 추가 질문들...
-];
+// const answers = [
+//   { type: "E/I", answer: "I" },
+//   { type: "S/N", answer: "N" },
+//   { type: "T/F", answer: "T" },
+//   { type: "J/P", answer: "J" },
+//   // 추가 질문들...
+// ];
 
-const mbtiResult = calculateMBTI(answers);
-console.log("MBTI 결과:", mbtiResult); // 예: "MBTI 결과: ESTJ"
+// const mbtiResult = calculateMBTI(answers);
+// console.log("MBTI 결과:", mbtiResult); // 예: "MBTI 결과: ESTJ"
