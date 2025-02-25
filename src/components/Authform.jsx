@@ -17,21 +17,24 @@ const AuthForm = ({ mode, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ FormData에서 직접 값을 가져오는 대신 객체로 전달
+    // FormData 객체
     const userData = {
       id: formData.id,
       password: formData.password,
       nickname: mode === "signup" ? formData.nickname : undefined,
     };
 
-    onSubmit(userData); // ✅ 올바른 데이터 전달
+    onSubmit(userData);
     console.log("전송 데이터:", userData);
   };
 
   // id 입력을 위한 input 만 힌트로 만들어 두었습니다.
   // 참고해서 한번 만들어 봅시다!
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col bg-white px-6 py-2 rounded-lg space-y-4"
+    >
       <input
         type="email"
         name="id"
@@ -39,6 +42,7 @@ const AuthForm = ({ mode, onSubmit }) => {
         onChange={handleChange}
         placeholder="email"
         required
+        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff7a7a]"
       />
       <input
         type="password"
@@ -47,6 +51,7 @@ const AuthForm = ({ mode, onSubmit }) => {
         onChange={handleChange}
         placeholder="password"
         required
+        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff7a7a]"
       />
       {mode === "signup" && (
         <input
@@ -56,9 +61,15 @@ const AuthForm = ({ mode, onSubmit }) => {
           onChange={handleChange}
           placeholder="닉네임"
           required
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff7a7a]"
         />
       )}
-      <button type="submit">{mode === "login" ? "로그인" : "회원가입"}</button>
+      <button
+        type="submit"
+        className="w-full py-3 bg-[#ff7a7a] text-white font-semibold rounded-lg hover:bg-[#454545] transition duration-300"
+      >
+        {mode === "login" ? "로그인" : "회원가입"}
+      </button>
     </form>
   );
 };

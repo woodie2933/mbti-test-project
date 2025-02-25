@@ -24,13 +24,18 @@ const Login = ({ setIsAuthenticated }) => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>로그인</h1>
+    <div className="flex flex-col min-h-screen items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+        <h1 className="text-3xl font-bold text-[#343434] text-center mb-5">
+          로그인
+        </h1>
         <AuthForm mode="login" onSubmit={handleLogin} />
-        <div>
-          <p>
-            계정이 없으신가요? <Link to="/signup">회원가입</Link>
+        <div className="mt-6 text-center">
+          <p className="text-gray-600">
+            계정이 없으신가요?{" "}
+            <Link to="/signup" className="text-blue-500 hover:underline">
+              회원가입
+            </Link>
           </p>
         </div>
       </div>

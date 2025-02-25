@@ -12,11 +12,30 @@ const TestResult = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getTestResults(); // 서버에서 결과 가져오기
-        setResult(data); // 결과 저장
+        // localStorage 에서 user 데이터 가져오기
+        const storedUserData = localStorage.getItem("userData");
+        if (!storedUserData) {
+          throw new Error("로그인이 필요한 페이지입니다.");
+        }
+
+        const data = JSON.parse(storedUserData);
+        if (!data.accessToken) {
+          throw new Error("유효하지 않은 토큰");
+        }
+
+        // 모든 결과 가져오기
+        const testResults = await getTestResults(data.accessToken);
+        console.log("테스트 결과:", testResults);
+
+        setResult(testResults || []);
       } catch (error) {
-        console.log("결과 불러오기 오류", error);
-        throw error;
+        console.log("결과 불러오기 오류:", error.message);
+
+        // 토큰 만료 또는 인증 오류 시 로그인으로 이동
+        if (error.response && error.response.status === 401) {
+          alert("세션이 만료되었습니다. 다시 로그인해주세요.");
+          navigate("/login");
+        }
       }
     };
 
@@ -26,7 +45,14 @@ const TestResult = () => {
   // 결과 삭제 기능
   const handleDelete = async (id) => {
     try {
-      await deleteTestResult(id);
+      // localStorage에서 user 데이터 가져오기
+      const storedUserData = localStorage.getItem("userData");
+      if (!storedUserData) throw new Error("로그인 정보가 없습니다.");
+
+      const data = JSON.parse(storedUserData);
+      if (!data.accessToken) throw new Error("유효하지 않은 토큰");
+
+      await deleteTestResult(id, data.accessToken);
       setResult((prevResult) =>
         prevResult.filter((result) => result.id !== id)
       );
@@ -38,8 +64,16 @@ const TestResult = () => {
   // 결과 비공개
   const handleVisibilityToggle = async (id, currentVisibility) => {
     try {
+      // localStorage에서 user 데이터 가져오기
+      const storedUserData = localStorage.getItem("userData");
+      if (!storedUserData) throw new Error("로그인 정보가 없습니다.");
+
+      const data = JSON.parse(storedUserData);
+      if (!data.accessToken) throw new Error("토큰이 없습니다.");
+
       const newVisibility = !currentVisibility;
-      await updateTestResultVisibility(id, newVisibility);
+      await updateTestResultVisibility(id, newVisibility, data.accessToken);
+
       setResult((prevResult) =>
         prevResult.map((result) =>
           result.id === id ? { ...result, visibility: newVisibility } : result
