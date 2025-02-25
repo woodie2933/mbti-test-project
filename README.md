@@ -22,10 +22,6 @@
 
 https://github.com/woodie2933/mbti-test-project.git
 
-## :paperclip: 배포 URL
-
-https://pokemon-project-five-beta.vercel.app/
-
 <br/>
 <br/>
 
